@@ -1,5 +1,5 @@
 # lowpoorpoor
-学而时习之。
+学而时习之
 
 |time|type|
 |:---:|:---:|
