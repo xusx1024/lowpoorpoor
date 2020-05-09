@@ -47,7 +47,7 @@ tag: [算法,hotfix]
 
 对数组{53, 542, 63, 3, 63, 14, 214, 154, 748, 616}，它的示意图如下：
 
-![示例图](/images/radix_sort.png)
+![示例图](../res/img/radix_sort.png)
 Java代码如下：
 	
 	package RadixSort;

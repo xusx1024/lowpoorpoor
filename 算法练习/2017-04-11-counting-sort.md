@@ -36,8 +36,8 @@ tag: [算法,hotfix]
 <br>
 对于数据2 5 3 0 2 3 0 3程序执行的过程如下图所示：
  
-![示例图](/images/counting_sort_1.png)<br>
-![示例图](/images/counting_sort_2.png)
+![示例图](../res/img/counting_sort_1.png)<br>
+![示例图](../res/img/counting_sort_2.png)
 
 
 #### 代码 ####

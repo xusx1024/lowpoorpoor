@@ -25,10 +25,10 @@ tag: [算法,hotfix]
 
 #### 实例分析 ####
 
-![示例图](/images/prefix_doubleing_demo_1.png)
+![示例图](../res/img/prefix_doubleing_demo_1.png)
 <br> 
  
-![示例图](/images/SA&rank.png)
+![示例图](../res/img/SA&rank.png)
 
 #### 代码 ####
 java语言实现：<br>

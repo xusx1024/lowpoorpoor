@@ -28,9 +28,7 @@ PMS，AMS，WMS，DALVIK，LAUNCHER理解，hook系统api，cmake使用，自定
 
 河马云——龙境ARM
 
-爱云兔——只说云没提ARM
-
-蓝光云——只提ARM没说是啥
+[NBE云手机](http://yun.nbegame.com/)，云控平板，龙境云手机，蜂窝云手机，蓝光云手机，小安云手机，爱云兔云手机
 
 
 
@@ -38,7 +36,7 @@ PMS，AMS，WMS，DALVIK，LAUNCHER理解，hook系统api，cmake使用，自定
 
 [技嘉主板](https://www.gigabyte.com/ARM-Server/R281-T94-rev-100#ov)
 
-![img](https://www.gigabyte.com/MicroSite/504/images/CPU.jpg)
+![img](https://www.gigabyte.com/MicroSite/504../res/img/CPU.jpg)
 
 [基于Docker实现并支持VMI服务的Android云平台](http://arc.zju.edu.cn/2018/0619/c20670a817816/page.htm)
 

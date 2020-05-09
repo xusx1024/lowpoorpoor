@@ -19,4 +19,4 @@ tag: 杂项
 | ACCESSIBILITY_SERVICE | AccessibilityManager | 无障碍辅助服务 |
 
 图片：
-![test](/images/SA&rank.png)
+![test](../res/img/SA&rank.png)
