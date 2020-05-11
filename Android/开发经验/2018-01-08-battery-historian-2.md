@@ -27,9 +27,9 @@ tag: android
 
 * 鉴于网上相关博客过多关于`Historian`的说明,我们的重点是新版`Historian V2`
 
-![File Info](../res/img/battery_historian_file_info.png)
+![File Info](../../res/img/battery_historian_file_info.png)
 
-![Historian](../res/img/battery_historian_historian.png)
+![Historian](../../res/img/battery_historian_historian.png)
 
 该图各个条目的意思,我们按照各个维度在图片左上右下的顺序来讲述,读者可以对比自己的图表,来查看如下的条目说明:
 
@@ -64,7 +64,7 @@ tag: android
 	- 白色:关
 - WiFi scan: wifi扫描
 - Wifi supplicant:WiFi请求状态
-![wifi-supplicant](../res/img/wifi-supplicant.png)
+![wifi-supplicant](../../res/img/wifi-supplicant.png)
 - wifi radio:大概就是wifi是否一直连接.表面含义是wifi 广播.
 	- 绿色:开
 	- 白色:关
@@ -91,7 +91,7 @@ tag: android
 - Battery level:统计电量时的耗电量
 - Coulomb charge:库伦是电量单位,难道这是电费??
 - Temperature:温度
-![Temperature](../res/img/battery_temperature.png)
+![Temperature](../../res/img/battery_temperature.png)
 - plugged:插电状态,在充电状态为关的这一段时间,是我们的手机的真实耗电时间
 	- 绿色:开
 	- 白色:关

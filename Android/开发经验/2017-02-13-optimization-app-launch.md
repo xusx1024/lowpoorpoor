@@ -34,7 +34,7 @@ tag: android
 
 #### App的启动 ####
 
-![app launch](../res/img/Application_launch.jpg)
+![app launch](../../res/img/Application_launch.jpg)
 
 >
 click事件会调用```startActivity(Intent)```，会通过Binder IPC机制，最终调用到ActivityManagerService.该Service会执行如下操作：
@@ -52,14 +52,14 @@ click事件会调用```startActivity(Intent)```，会通过Binder IPC机制，�
 > ActivityThread随后依次调用```Looper.prepareLoop()```和```Looper.loop()```来开启消息循环。
 
 流程图如下：
-![process creation](../res/img/process_creation.jpg)
+![process creation](../../res/img/process_creation.jpg)
 
 ##### 绑定Application #####
 
 > 接下来要做的就是将进程和指定的Application绑定起来。这个是通过上一节的ActivityThread对象中调用```bindApplication()```方法完成的。该方法发送一个BIND_APPLICATION的消息到消息队列中，最终通过```handleBindApplication()```处理该消息。然后调用```makeApplication()```方法来加载App的classes到内存中。
  流程如下：
 
-![bind application](../res/img/bind_application.jpg)
+![bind application](../../res/img/bind_application.jpg)
 	
 ##### 启动Activity #####
 
@@ -68,13 +68,13 @@ click事件会调用```startActivity(Intent)```，会通过Binder IPC机制，�
 
  假设点击的是一个视频浏览的App，其流程如下：
 
-![start activity](../res/img/start_activity.jpg)
+![start activity](../../res/img/start_activity.jpg)
 ##### Activity显示 #####
 
 > Activity被创建出来后，会依次加载主题样式Theme中的windowBackground等属性，以及配置Activity层级上的一些属性，再inflate布局，当onCreate、onStart、onResume方法都走完，最后才进行setContentView的measure、layout、draw显示在界面上，此时可以看到App的第一帧画面了。
 
 如图：
-![display activity](../res/img/display_activity.png)
+![display activity](../../res/img/display_activity.png)
 
 #### 测量App的启动时间 ####
 
@@ -85,13 +85,13 @@ click事件会调用```startActivity(Intent)```，会通过Binder IPC机制，�
 	api19之后，Android系统Log中增加了ActivityManager:Displayed [packageName/activityName]: time。所以，在Android Monitor中使用 ActivityManager:Displayed filter，查看启动首页的时间，这个时间是Activity启动到Layout全部显示的时间。
 
 图为抓取微信开启时间：
-![wechat display time](../res/img/display_time.png)
+![wechat display time](../../res/img/display_time.png)
 
 ##### ADB命令查看启动时间 #####
 
 `adb shell am start -W [packageName]/[packageName.MainActivity]`
 
-![adb see launch time](../res/img/adb_launch_time.png)
+![adb see launch time](../../res/img/adb_launch_time.png)
 >
 - ThisTime：最后一个启动的Activity的启动耗时；
 - TotalTime:到达当前页面的所有Activity的启动耗时；
@@ -112,7 +112,7 @@ click事件会调用```startActivity(Intent)```，会通过Binder IPC机制，�
 
 所以ActivityManager:Displayed并不能精确我们App完全的启动时间。我们可以在API>=19的版本，在这些预操作做完之后手动调用`reportFullyDrawn`。这样Log中会增加一条日志：
 
-![reportFullyDrawn time](../res/img/report_full_drawn.png)
+![reportFullyDrawn time](../../res/img/report_full_drawn.png)
 
 #### 优化点 ####
 

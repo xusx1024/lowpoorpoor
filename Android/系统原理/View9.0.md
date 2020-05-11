@@ -8,7 +8,7 @@
 
 在`setContentView`中设置自定义的`UI`，看以下代码：
 
-```java
+```
 @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
@@ -19,7 +19,7 @@
 
  如果自定义`Activity`继承了`AppCompatActivity`，那么进入`setContentView`，发现调用跳转如下：`AppCompatActivity$setContentView`  --> `AppCompatDelegateImpl$setContentView`发现代码如下：
 
-```java
+```
 @Override public void setContentView(int resId) {
     this.ensureSubDector();
     // 打开AppCompatDelegateImpl.class可以看到：android.R.id.content = 16908290
@@ -38,7 +38,7 @@
 
 我们看到上面有`ensureSubDector`，里面跳转到`createSubDecor`。这个方法的作用是创建一个名字叫做`subDector`的`ViewGroup`实例对象，并且通过`setContentView`设置到当前`Activity`相关联的`Window`上去。代码如下：
 
-```java
+```
 private ViewGroup createSubDecor() {
     // ...
     // 【A】根据主题风格，设置窗口对应的特征，下面代码省略了if...else...判断条件
@@ -102,7 +102,7 @@ private ViewGroup createSubDecor() {
 
  如果自定义`Activity`继承了`Activity`,那么点击直接进入`Activity$setContentView`，代码如下：
 
-```java
+```
  public void setContentView(@LayoutRes int layoutResID) {
      getWindow().setContentView(layoutResID);
      initWindowDecorActionBar();
@@ -120,7 +120,7 @@ private ViewGroup createSubDecor() {
 
 进入正题，看下`setContentView`的源码：
 
-```java
+```
 @Override
 public void setContentView(View view, ViewGroup.LayoutParams params) {
     // Note: FEATURE_CONTENT_TRANSITIONS may be set in the process of installing the window
@@ -161,7 +161,7 @@ public void setContentView(View view, ViewGroup.LayoutParams params) {
 
 `generateDecor`生成`DecorView`, 根据`Decor`，`generateLayout(mDecor)`生成`mContentParent`.
 
-```java
+```
 protected DecorView generateDecor(int featureId) {
     // 系统进程不拥有应用程序的上下文，直接使用我们有的上下文。否则就使用应用程序上下文，并不依赖于Activity
     // 在构造方法中有说明，只有主Activity窗口使用 decor 上下文，其他的窗口有什么用什么
@@ -185,7 +185,7 @@ protected DecorView generateDecor(int featureId) {
 
 `generateLayout`根据风格生成不同的标记，同时配置不同的布局文件。相关源码如下：
 
-```java
+```
 // 应用当前主题的数据
 protected ViewGroup generateLayout(DecorView decor) {
     TypedArray a = getWindowStyle(); // 默认值：com.android.internal.R.styleable.Window
@@ -283,7 +283,7 @@ protected ViewGroup generateLayout(DecorView decor) {
 
 ### 3.1 构造生成`Decor`
 
-```java
+```
 DecorView(Context context, int featureId, PhoneWindow window,WindowManager.LayoutParams params) {
     // ...
     // 设置进入动画
@@ -300,7 +300,7 @@ DecorView(Context context, int featureId, PhoneWindow window,WindowManager.Layou
 
 ### 3.2  加载布局`onResourcesLoaded`
 
-```java
+```
     void onResourcesLoaded(LayoutInflater inflater, int layoutResource) {
         // 大小改变时候绘制的背景，比如destory时候
         if (mBackdropFrameRenderer != null) {
@@ -344,7 +344,7 @@ DecorView(Context context, int featureId, PhoneWindow window,WindowManager.Layou
 LayoutInflater inflater = LayoutInflater.from(context);
 ```
 
-```java
+```
 public static LayoutInflater from(Context context) {
     LayoutInflater LayoutInflater =
             (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -363,7 +363,7 @@ public static LayoutInflater from(Context context) {
 
 在`SystemServiceRegistry`中看到一个很巨的`static`方法，根据关键字`LAYOUT_INFLATER_SERVICE`，找到该服务初始化的地方：
 
-```java
+```
 registerService(Context.LAYOUT_INFLATER_SERVICE, LayoutInflater.class,
         new CachedServiceFetcher<LayoutInflater>() {
     @Override
@@ -378,7 +378,7 @@ registerService(Context.LAYOUT_INFLATER_SERVICE, LayoutInflater.class,
 
 看到一个`LayoutInflater`的子类`PhoneLayoutInflater`，这里定义了几个类前缀：
 
-```java
+```
     private static final String[] sClassPrefixList = {
         "android.widget.",
         "android.webkit.",
@@ -394,7 +394,7 @@ registerService(Context.LAYOUT_INFLATER_SERVICE, LayoutInflater.class,
 
 一般使用`View root = inflater.inflate(layoutResource, null);`来扩充已有的视图层级。
 
-```java
+```
 /**
 *
 * @param parser 包含了视图层级描述的XML dom 节点
@@ -478,7 +478,7 @@ void rInflate(XmlPullParser parser, View parent, Context context,
 
 在`4.2.2`，看到这个方法，生成一个`View`，然后作为跟视图传入了递归方法里。具体生成视图的代码在`createView`中：
 
-```java
+```
     public final View createView(String name, String prefix, AttributeSet attrs)
             throws ClassNotFoundException, InflateException {
             // 看到这里应该联想到：常用控件，应该都有缓存
@@ -551,7 +551,7 @@ void rInflate(XmlPullParser parser, View parent, Context context,
 
  在`1`处看到，`verifyClassLoader`，来看看其实现：
 
-```java
+```
 
 private static final ClassLoader BOOT_CLASS_LOADER = LayoutInflater.class.getClassLoader();
 // 双亲委派，如果父类的加载器在，直接用  
@@ -576,7 +576,7 @@ private final boolean verifyClassLoader(Constructor<? extends View> constructor)
 
 在`2`处看到`LoadClass`，摘记源码如下：
 
-```java
+```
 protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
     // 类是否已加载，本地方法快速
     Class<?> c = findLoadedClass(name);
@@ -612,7 +612,7 @@ protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundE
 
 这个方法的最后一句是我们熟悉的：
 
-```java
+```
 Looper.myQueue().addIdleHandler(new Idler());
 ```
 
@@ -620,7 +620,7 @@ Looper.myQueue().addIdleHandler(new Idler());
 
 ### 5.1 handleResumeActivity
 
-```java
+```
 @Override public void handleResumeActivity(IBinder token, boolean finalStateRequest, boolean isForward, String reason) {
     // 转到后台后准备好GC了，但是我们又回来了(resume)，所以跳过GC。
     unscheduleGcIdler();
@@ -670,7 +670,7 @@ Looper.myQueue().addIdleHandler(new Idler());
 
 `WindowManager`是行为类，他的实现类`WindowManagerImpl`，这个类不干活的，他和`Context`打交道，管理干活的`WindowManagerGlobal`, `WidowManagerGlobal` 根据`AttachInfo`处理`ViewRootImpl`。
 
-```java
+```
 public void updateViewLayout(View view, ViewGroup.LayoutParams params) {
     // ...
     synchronized (mLock) {
@@ -685,7 +685,7 @@ public void updateViewLayout(View view, ViewGroup.LayoutParams params) {
 
 `ViewRootImpl$setLayoutParams`， 又一次设置布局参数，我为啥要说又。。。各种标记满天飞，我们看重的代码就一行：
 
-```java
+```
 void setLayoutParams(WindowManager.LayoutParams attrs, boolean newView) {
     synchronized (this) {
         // ...
@@ -701,7 +701,7 @@ void setLayoutParams(WindowManager.LayoutParams attrs, boolean newView) {
 
 接近1000行的方法，多略略略。
 
-```java
+```
 private void performTraversals() {
     // 准备了一个WindowManager.LayoutParams
     // ...
@@ -755,7 +755,7 @@ private void performTraversals() {
 
 `view`具体的测量工作在`onMeasure`中，是由`measure`调用的。然而，只有`onMeasure`可以，也必须被子类重写。
 
-```java
+```
 /**
 *
 * @param widthMeasureSpec 父控件施加的水平空间要求
@@ -792,7 +792,7 @@ public final void measure(int widthMeasureSpec, int heightMeasureSpec) {
 
 (一)在顶级`View`中，测量规范由布局参数确定：`ViewRootImpl$getRootMeasureSpec`
 
-```java
+```
 /**
 * 基于布局参数指出根视图的测量规范。
 */
@@ -863,7 +863,7 @@ private static int getRootMeasureSpec(int windowSize, int rootDimension) {
 
 关键变量：
 
-```java
+```
     /**
      * The offset, in pixels, by which the content of this view is scrolled
      * horizontally. 偏移量。该视图内容的横向滚动像素值。
@@ -883,7 +883,7 @@ private static int getRootMeasureSpec(int windowSize, int rootDimension) {
 
 scrollTo, scrollBy的关联：根据名字也能区分那个是滚到`(x,y)`，滚了`(x,y)`。
 
-```java
+```
 
     /**
      * Move the scrolled position of your view. This will cause a call to
@@ -917,7 +917,7 @@ scrollTo, scrollBy的关联：根据名字也能区分那个是滚到`(x,y)`，�
 
 `View$postInvalidateOnAnimation` --> `ViewRootImpl$dispatchInvalidateOnAnimation`  --> `InvalidateOnAnimationRunnable$run`  -->  `View$invalidate()` --> `View$invalidateInternal` -->  `ViewRootImpl$invalidateChild` --> `ViewRootImpl$invalidateChildInParent` --> `ViewRootImpl$invalidate` --> `scheduleTraversals` --> `ViewRootImpl$doTraversals` --> `ViewRootImpl$performTraversals` --> `ViewRootImpl$performDraw`--> `ViewRootImpl$draw`--> `ViewRootImpl$drawSoftware`  --> `View.draw` --> `View.onDrawFroeground` --> `View.onDrawScrollBars` -->  `View.invalidate(Rect)` --> `View.invalidateInternal(int,int,int,int)`
 
-```java
+```
 /**
  * 标记一块需要重绘的脏区域。
  *
@@ -935,7 +935,7 @@ scrollTo, scrollBy的关联：根据名字也能区分那个是滚到`(x,y)`，�
 
 #### 5.4.1.4 `onMeasure()` 中常用方法
 
-```java
+```
 getChildCount()：获取子View的数量；
 getChildAt(i)：获取第i个子控件；
 subView.getLayoutParams().width/height：设置或获取子控件的宽或高；
@@ -953,7 +953,7 @@ setMeasuredDimension(width, height)：重新设置控件的宽高。如果写了
 
 `ViewRootImpl$performTraversals`
 
-```java
+```
     private void performLayout(WindowManager.LayoutParams lp, int desiredWindowWidth,
             int desiredWindowHeight) {
         // ...
@@ -965,7 +965,7 @@ setMeasuredDimension(width, height)：重新设置控件的宽高。如果写了
 
 `View$layout`
 
-```java
+```
 public void layout(int l, int t, int r, int b) {
     // ...
     onLayout(changed, l, t, r, b);
@@ -977,7 +977,7 @@ public void layout(int l, int t, int r, int b) {
 
 以`LinearLayout`为例，我们看下`onLayout`实现的典范：
 
-```java
+```
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         if (mOrientation == VERTICAL) {
@@ -990,7 +990,7 @@ public void layout(int l, int t, int r, int b) {
 
 垂直布局的实现：
 
-```java
+```
 void layoutVertical(int left, int top, int right, int bottom) {
     	// 像素值，表示当前视图的左边和视图内容的左边这么一段距离。
         final int paddingLeft = mPaddingLeft;
@@ -1084,7 +1084,7 @@ void layoutVertical(int left, int top, int right, int bottom) {
 
 进来一看，调用链路如下：`onLayout` --> `dispatchLayout` 
 
-```java
+```
 void dispatchLayout {
     mState.mIsMeasuring = false;
     if (mState.mLayoutStep == State.STEP_START) {
@@ -1107,7 +1107,7 @@ void dispatchLayout {
 
 `dispatchLayoutStep1`:
 
-```java
+```
 private void dispatchLayoutStep1() {
     // 处理适配器更新
     // 决定运行哪个动画

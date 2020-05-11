@@ -32,7 +32,7 @@ Activity源码中有3个`setContentView`的重载方法。
 
 可以看到，调用当前Activity的window的`setContentView`来布局，这里我们上一张图看一下activity，window，view(xml布局)的关系：
 
-![activity、window层级关系图](../res/img/activity-window-layer.jpg)
+![activity、window层级关系图](../../res/img/activity-window-layer.jpg)
 
 其中`com.android.internal.policy.PhoneWindow`是`android.view.Window`的子类。<br/>
 DecorView是的PhoneWindow的顶级view，继承自FrameLayout，其内部包含一个竖直的LinearLayout。<br/>
@@ -320,14 +320,4 @@ ContentView即需要展示在UI上的xml布局文件。<br/>
 - 如果不存在或者存在但没通过验证，就重新生成并缓存，生成时如果name有前缀就拼装上，通过反射获取其构造函数；
 - 通过其构造生成view。
 
-
-
-
-
-
-
-
- 
-
- 
  

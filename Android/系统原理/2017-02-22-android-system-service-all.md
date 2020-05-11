@@ -10,8 +10,15 @@ tag: android
 #### 一些说明 ####
 
 这个系列学习的系统服务，绝大多数是`android.app.SystemServiceRegistry`里面注册的，包括核心平台服务以及硬件服务。如图，集中在第二层`Application framework`。
- 
-![application framework](../res/img/android-framework.png)
+
+2017
+![application framework](../../res/img/android-framework.png)
+
+2020 from developer.android.com
+![Android 软件堆栈](../../res/img/Android软件堆栈20200511.png)
+
+from source.android.com
+![Android 软件堆栈](../../res/img/Android堆栈20200511.png)
 
 其中核心平台服务包括：
 
@@ -19,9 +26,9 @@ tag: android
 - Context.WINDOW_SERVICE -> WindowManager
 - PackageManagerService [该服务并非在SystemServiceRegistry中注册]
  
-![android start 1](../res/img/android-start-1.png)
+![android start 1](../../res/img/android-start-1.png)
  
-![android start 2](../res/img/android-start-2.png)
+![android start 2](../../res/img/android-start-2.png)
 
 
 对比图一和图二，发现对本地系统服务和java系统服务定义是相反的，由于本地系统服务由C/C++编写，所以判定图一的定义是正确的。保留图二的原因是，图二展示了android系统init后的更多信息。

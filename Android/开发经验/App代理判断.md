@@ -1,6 +1,6 @@
 ## App代理判断
 
-```java
+```
 private boolean isWifiProxy(Context context) {
     String host;
     String port;
@@ -18,7 +18,7 @@ private boolean isWifiProxy(Context context) {
 
 OKHttp设置不使用代理:
 
-```java
+``` 
 OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
 okHttpClient.proxy(Proxy.NO_PROXY);
 ```
@@ -28,7 +28,7 @@ okHttpClient.proxy(Proxy.NO_PROXY);
 
 代理类型:
 
-```java
+``` 
     /**
      * Represents the proxy type.
      *
@@ -52,7 +52,7 @@ okHttpClient.proxy(Proxy.NO_PROXY);
 
 不使用代理(直连):
 
-```java
+``` 
  /**
      * A proxy setting that represents a {@code DIRECT} connection,
      * basically telling the protocol handler not to use any proxying.

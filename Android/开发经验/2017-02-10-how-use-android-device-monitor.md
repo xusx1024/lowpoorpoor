@@ -10,7 +10,7 @@ tag: android
 #### 问题现象 ####
 
 	
-![ADM现象截图](../res/img/adm_question.png)
+![ADM现象截图](../../res/img/adm_question.png)
 
 	如图所示，CTRL + SHIFT + A 输入Android Device Monitor并打开，可以看到连接了两部手机，但都没有显示我想要调试的进程信息。
 

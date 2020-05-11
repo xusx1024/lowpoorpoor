@@ -11,7 +11,7 @@ tag: android
 
  	在android手机中，会发现开发者选项 - GPU呈现模式分析的选项。很多道友用之来测试其手机的流畅度。开启之后大概就是这样子了：
 
-![玄学曲线](../res/img/profileGPURendering.png)
+![玄学曲线](../../res/img/profileGPURendering.png)
 
 
 #### 说说这张图片 ####
@@ -24,7 +24,7 @@ tag: android
 
 	红色代表了“执行时间”，它指的是Android渲染引擎执行绘制命令的时间，为了绘制到屏幕上，Android需要使用OpenGL ES的API接口来绘制Display List。这些API有效地将数据发送到GPU，最后在屏幕上显示出来。假如当前界面的视图越多，那么红色便会“跳”得越高。实际使用中，比如平时刷App遇到许多缩略图需要加载，那么红色会突然跳很高，但是此时你的页面滑动其实是流畅的，虽然等了零点几秒图片才加载出来，但并不意味着你卡住了。
 
-![绘图执行图](../res/img/executePhase.png)
+![绘图执行图](../../res/img/executePhase.png)
 
 ##### 黄柱 #####
 

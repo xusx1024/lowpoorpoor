@@ -16,7 +16,7 @@
 
 > startActivity: 启动一个新的活动。当活动退出，你不会收到任何信息。该实现重写了基类(`Context$startActivity`)版本，提供了启动活动相关的信息。由于这些增加的信息，不再需要`FLAG_ACTIVITY_NEW_TASK`启动标记了。如果未指定，新的活动被添加到调用者的任务栈中。
 
-```java
+``` 
 @Override
 public void startActivity(Intent intent, @Nullable Bundle options){
     if(options != null){
@@ -33,7 +33,7 @@ public void startActivity(Intent intent, @Nullable Bundle options){
 
 先来看一个方法：
 
-```java
+``` 
 public void overridePendingTransition(int enterAnim, int exitAnim){
     try {
         ActivityManager.getService().overridePendingTransition(mToken, enterAnim, exitAnim);
@@ -46,7 +46,7 @@ public void overridePendingTransition(int enterAnim, int exitAnim){
 
 `ActivityOptions$makeCustomAnimation`
 
-```java 
+``` 
 public static makeCustomAnimation(Context context,
 int enterResId, int exitId, Handler handler, OnAnimationStartedListener listener) {
     ActivityOptions opts = new ActivityOptions();
@@ -61,7 +61,7 @@ int enterResId, int exitId, Handler handler, OnAnimationStartedListener listener
 
 在材料设计中，还可看到更多漂亮的转场动画，比如联系人列表进入详情的头像伸缩变换转场动画。点击一个条目，头像会扩大为大图到详情的活动页面，从详情返回列表，大图又缩小为小图。系统实现如下：
 
-```java
+``` 
 private static ActivityOptions makeThumbnailAnimation(View source, Bitmap thumbnail,
 int startX, int startY, OnAnimationStartedListener listener, boolean scaleUp) {
     ActivityOptions opts = new ActivityOptions();
@@ -83,7 +83,7 @@ int startX, int startY, OnAnimationStartedListener listener, boolean scaleUp) {
 
 ### 1.2 startActivityForResult
 
-```java
+``` 
 pbulic void startActivityForResult(@RequiresPermission Intent intent, int requestCode, @Nullable Bundle options){
     // app冷启动的首个Activity，mParent为null
     if(mParent == null){
@@ -124,7 +124,7 @@ mMainThread是主线程的实例，在一个新的活动实例创建后附着。
 
 系统在`ActivityThread$PerformLaunchActivity`中，使用`Instrumentation$newActivity`反射生成`Activity`实例，然后调用`Activity$attach`把当前线程实例传给生成的最新`Activity`。
 
-```java
+``` 
 public Activity newActivity(ClassLoader cl, String className, Intent intent) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
     String pkg = intent != null && intent.getComponent() != null ? intent.getComponent().getPackageName() : null;
     return getFactory(pkg).instantiateActivity(cl, className, intent);
@@ -134,7 +134,7 @@ public Activity newActivity(ClassLoader cl, String className, Intent intent) thr
 
 `Activity$newActivity` ---> `AppcomponentFactory$instantiateActivity`如下：
 
-```java
+``` 
 public @NonNull Activity instantiateActivity(@NonNull ClassLoader cl, @NonNull String className, @NonNull Intent intent) throws InstaniationException, IllegalAccessException, ClassNotFoundExcption {
     return (Activity)cl.loadClass(cl).newInstance();
 }
@@ -148,7 +148,7 @@ public @NonNull Activity instantiateActivity(@NonNull ClassLoader cl, @NonNull S
 
 a) Activity
 
-```java
+``` 
 // Activity$cancelPendingInputsAndStartExitTransition
 private void cancelPendingInputsAndStartExitTransition(Bundle options) {
     // I: mWidow.peekDecorView() 通过mWindow(PhoneWindow的实例)获取View的一个实例DecorView
@@ -176,7 +176,7 @@ private void cancelPendingInputsAndStartExitTransition(Bundle options) {
 
 b) View(DecorView)
 
-```java
+``` 
 // View$onCancelPendingInputEvents
 public void onCancelPendingInputEvents() {
     removePerformClickCallback();
@@ -200,7 +200,7 @@ public void onCancelPendingInputEvents() {
 
 ### 2.1 execStartActivity 
 
-```java
+``` 
 /**
 * 
 * @param who 开启当前活动的上下文
@@ -266,7 +266,7 @@ public ActivityResult execStartActivity(
 
 在`execStartActivity()`，看到`ActivityManager.getService()`，获取`ActivityManagerService`的单例实例。代码：
 
-```java
+``` 
 public abstract class Singleton<T> {
     private T mInstance;
     protected abstract T create();
@@ -281,7 +281,7 @@ public abstract class Singleton<T> {
 }
 ```
 
-```java
+``` 
 private static final Singleton<IActivityManager> IActivityManagerSingleton = 
     new Singleton<IActivityManager>() {
   		@Override
@@ -299,7 +299,7 @@ private static final Singleton<IActivityManager> IActivityManagerSingleton =
 
 ### 3.1`startActivityAsUser`：
 
-```java
+``` 
 /**
 *
 * @param caller
@@ -357,7 +357,7 @@ public final int startActivityAsUser (IApplicationThread caller, String callingP
 - UID：跟应用进程相关，一旦安装到设备就不会改变，每个用户的每个应用的uid都不一样
 - APPID：跟包名有关，包名相同appid不同。即使用户不同，同一个应用appid是一样的
 
-```java
+``` 
 public final class UserHandle implements Parcelable {
     /**
     * @hide Range of uids allocated for a user.
@@ -407,7 +407,7 @@ public final class UserHandle implements Parcelable {
 
 这个方法接近220行，我们看下重点：
 
-```java
+``` 
 /**
 * @parmas 这些参数在前面的调用过程中大都有说明
 * @return 返回ActivityManager定义的err code,如果START_SUCCESS = 0
@@ -537,7 +537,7 @@ private int startActivityUnchecked(...) {
 
 ### 5.1 `ActivityStack$resumeTopActivityInnerLocked`
 
-```java
+```
  private boolean resumeTopActivityInnerLocked(ActivityRecord prev, ActivityOptions options) {
         // ... 系统没在启动中并且系统也不是已启动，返回false
         
@@ -571,7 +571,7 @@ private int startActivityUnchecked(...) {
 }
 ```
 
-```java
+```
 
 void startSpecificActivityLocked(ActivityRecord r,boolean andResume, boolean checkConfig) {
      if (app != null && app.thread != null) {
@@ -592,7 +592,7 @@ void startSpecificActivityLocked(ActivityRecord r,boolean andResume, boolean che
 - 下一步来到`ActivityStarterController$startHomeActivity`，在这里，调用`ActivityStackSupervisor$moveHomeStackTaskToTop`把桌面任务栈移至顶部，然后生成一个`ActivityStarter`来执行
 - 这一次由于没有设置`userid`，所以不会像上面那样走`startActivityMayWait`，而是走`startActivity`
 
-```java
+```
  boolean startHomeActivityLocked(int userId, String reason) {
         if (mFactoryTest == FactoryTest.FACTORY_TEST_LOW_LEVEL
                 && mTopAction == null) {
@@ -638,7 +638,7 @@ void startSpecificActivityLocked(ActivityRecord r,boolean andResume, boolean che
 - 下一步，调用`Instrumentation$callActivityOnPause`，然后调用`Activity$performPause`
 - 最终，看到了熟悉的`onPause()`
 
-```java
+```
 // 开始暂停当前获取焦点的活动。如果活动已经暂停或者没有获取焦点，这就是错误的调用了。
 final boolean startPausingLocked(boolean userLeaving, boolean uiSleeping,
             ActivityRecord resuming, boolean pauseImmediately) {
@@ -673,7 +673,7 @@ final boolean startPausingLocked(boolean userLeaving, boolean uiSleeping,
 
 - 下一步，看到`runSelectLoop`中维护了`ZygoteConnection`的一个`ArrayList`，用来存放`ActivityManagerService`发来的请求数据，接着调用：
 
-  ```java
+  ```
     ZygoteConnection connection = peers.get(i);
     final Runnable command = connection.processOneCommand(this);
   ```
@@ -688,7 +688,7 @@ final boolean startPausingLocked(boolean userLeaving, boolean uiSleeping,
 
 a) 在 5.1.3中，我们走到了`ActivityThread$main`方法中，这里的主要工作：
 
-```java
+```
 public static void main(String[] args) {
     // ...
     // 为主线程准备looper
@@ -704,7 +704,7 @@ public static void main(String[] args) {
 
 b) 在`ActivityThread$attach`中：
 
-```java
+```
 private void attach(boolean system, long startSeq) {
     // ...
     if (!system) {
@@ -739,7 +739,7 @@ private void attach(boolean system, long startSeq) {
 
 c) 下面，来到了`ActivityManagerService$attachApplication`，传入当前的主线程实例，然后来到`attachApplicationLocked`方法，在这里，看到了中国人民的老朋友`ActivityStackSupervisor`的实例：
 
-```java
+```
 private final boolean attachApplicationLocked(IApplicationThread thread,
                                               int pid, int callingUid, long startSeq) {
     // ...
@@ -772,7 +772,7 @@ private final boolean attachApplicationLocked(IApplicationThread thread,
 
 d) 我们看下`ActivityStackSupervisor$realStartActivityLocked`
 
-```java
+```
 final boolean realStartActivityLocked(ActivityRecord r, ProcessRecord app,
        boolean andResume, boolean checkConfig) throws RemoteException {
            // ...
@@ -784,7 +784,7 @@ final boolean realStartActivityLocked(ActivityRecord r, ProcessRecord app,
 
 e) 然后`ActivityThread$handleLaunchActivity` --> `ActivityThread$performLaunchActivity`
 
-```java
+```
 private Activity performLaunchActivity(ActivityClientRecord r, Intent customIntent) {
     // ...
     // 反射生成Activity实例
@@ -801,7 +801,7 @@ private Activity performLaunchActivity(ActivityClientRecord r, Intent customInte
 
 f) 然后`Activity$performCreate`，这里我们看到了熟悉的`onCreate`.我们知道`TransactionExecutor` 执行所有的合约`executeCallbacks(transaction)`,`executeLifecycleState(transaction)`，在生命周期的转换里，具体实现如下`TransactionExecutorHelper$getLifeCyclePath`：
 
-```java
+```
 public IntArray getLifecyclePath(int start, int finish, boolean excludeLastState) {
    // ...
    			// 清除生命周期IntArray，这是Android自定义的数据结构
@@ -848,7 +848,7 @@ public IntArray getLifecyclePath(int start, int finish, boolean excludeLastState
 }
 ```
 
-```java
+```
     public static final int UNDEFINED = -1;
     public static final int PRE_ON_CREATE = 0;
     public static final int ON_CREATE = 1;
@@ -876,7 +876,7 @@ g) 根据上一步，可以知道`create`之后是`start`, `resume`两个状态�
 
 发现这个`Idler`调用了`ActivityManagerService$activityIdle`，然后调用了`ActivityStackSupervisor$activityIdleInternalLocked`:
 
-```java
+```
  if (r.finishing) {
      stack.finishCurrentActivityLocked(r, ActivityStack.FINISH_IMMEDIATELY, false,
              "activityIdleInternalLocked");

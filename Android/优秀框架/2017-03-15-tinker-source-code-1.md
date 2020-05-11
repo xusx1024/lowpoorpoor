@@ -37,7 +37,7 @@ Dalvik虚拟机执行的是dex字节码，ART虚拟机执行的是本地机器�
 
 ART虚拟机并不要求开发者将自己的应用直接编译成目标机器码。这样，将应用的dex字节码翻译成本地机器码的最恰当AOT时机就发生在应用安装的时候。
  
-![示例图](../res/img/dalvik&art.png)
+![示例图](../../res/img/dalvik&art.png)
 
 <br/>
 #### dex（dalvik executable） ####
@@ -53,11 +53,11 @@ odex（optimised dex）,优化后的dex。
 
 以[AndFix](https://github.com/alibaba/AndFix)最著名。原理如下图：
  
-![示例图](../res/img/andfix-yuanli.png)
+![示例图](../../res/img/andfix-yuanli.png)
 
 其修复过程如图：
  
-![示例图](../res/img/andfix-guocheng.png)
+![示例图](../../res/img/andfix-guocheng.png)
 
 这套方案直接使用`dalvik_replaceMethod`替换class中方法的实现。由于它并没有整体替换class，而field在class中的相对地址在class加载时已确定，所以AndFix无法支持新增或者删除field的情况(通过替换init与clinit只可以修改field的数值)。
 

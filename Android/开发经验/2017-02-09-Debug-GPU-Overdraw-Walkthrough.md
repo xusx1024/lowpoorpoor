@@ -24,7 +24,7 @@ tag: android
 ##### 解释 #####
 
 
-![示例图](../res/img/color-key-for-debug-GPU-overdraw-output.png)
+![示例图](../../res/img/color-key-for-debug-GPU-overdraw-output.png)
 
 - True color: No overdraw
 - Blue: Overdrawn once

@@ -5,7 +5,6 @@ ADB，即 [Android Debug Bridge](https://developer.android.com/studio/command-li
 
 **注：** 有部分命令的支持情况可能与 Android 系统版本及定制 ROM 的实现有关。
 
-# ![Table of Contents](./assets/toc.png)
 
 <!-- vim-markdown-toc GFM -->
 * [基本用法](#基本用法)

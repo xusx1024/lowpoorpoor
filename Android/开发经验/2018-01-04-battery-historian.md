@@ -23,7 +23,7 @@ tag: android
 
 安装如下图:
 
-![install](../res/img/setup-docker-toolbox.png)
+![install](../../res/img/setup-docker-toolbox.png)
 - 比如git,VirtualBox,如果有就不要勾选了
 - Docker Compose for windows,kitematic forwindows 最好选用,挺好用的
 
@@ -45,7 +45,7 @@ tag: android
 	- `docker run -d -p 9999:9999 bhaavan/battery-historian --publish 9999` 这是映射端口号
 
 如果一切顺利,到此为止,在浏览器里输入`ip:端口号`应该是可以使用了,如图:
-![upload](../res/img/battery-historian-upload.png)
+![upload](../../res/img/battery-historian-upload.png)
 
 #### bugreport ####
 

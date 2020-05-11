@@ -7,7 +7,7 @@ categories: Android
 
 #### 需求 ####
 
-![需求示意图](../res/img/auth_sequence_diagram.png)
+![需求示意图](../../res/img/auth_sequence_diagram.png)
 
 看时序图比较简单，进程间通信，把APPID传过去，把授权码带回来
 本来懒得费事，一个`startActivityForResult`即可结束战斗
