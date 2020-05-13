@@ -2,6 +2,7 @@
 layout: post
 title:  Git使用笔记
 date:   2017-04-07
+update:   2020-05-12
 categories: Others
 tag: 杂项
 ---
@@ -69,3 +70,15 @@ git与svn不同，git只跟踪文件的变化，不跟踪目录，如果想要�
 文件夹的层级过多，导致在clone的时候，出现该提示，可以考虑使用：
 
 `git config --system core.longpaths true`
+
+#### Github没有记录Contributes ####
+说明push时使用的账号姓名和Github不一致。
+1. 使用Git log查看commit历史日志，对比Author字段
+2. 修改git config的user.email, user.name
+    2.1 git config --global user.email xxx@xx.com
+    2.2 git config --global user.name xxx
+3. 做一次尝试性的commit、push
+4. git log查看日志，GitHub查看contribute表格，发现已经成功了
+note： 退出git log，直接按q。
+
+距离2008已经12年了，可是我好像已经忘记了那些不幸的人们，缅怀。
