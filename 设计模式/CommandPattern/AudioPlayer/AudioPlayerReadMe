@@ -1,0 +1,4 @@
+client: Julia
+Invoker: keyboard
+Command: play,rewind,stop
+Receiver: radio
