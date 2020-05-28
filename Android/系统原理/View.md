@@ -42,7 +42,7 @@ view的展示过程,简单说来是测量,布局,绘制的过程.
 
 `requestLayout`, 当布局变化的时候,比如方向变化,尺寸变化,会调用该方法,在自定义视图中,如果某些情况下希望重新测量尺寸大小,应该手动调用该方法,他会触发`measure`和`layout`过程,但不会draw.
 
-![diff](../img/view_draw_method_chain.png)
+![diff](../../res/img/view_draw_method_chain.png)
 
 ---
 
