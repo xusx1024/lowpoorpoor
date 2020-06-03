@@ -85,3 +85,8 @@ note： 退出git log，直接按q。
 
 20200527 
 在push的时候，手动修改author。
+
+#### remote: Repository not found.Authentication failed for 'https://github.com ####
+push 报错
+    git config --global user.email xxx@xx.com
+    git config --global user.name xxx
