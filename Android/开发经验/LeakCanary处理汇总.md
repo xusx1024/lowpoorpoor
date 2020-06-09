@@ -51,6 +51,7 @@
    1. 在调用dialog.dissmiss()之后，把OnCancelListener/onDismissListener置为null。
    
    2. Looper.myLooper().quitSafely();
+> quitSafely最终调用的MessageQueue$removeAllMessageLocked.
     
 其他处理方式：       
 [该blog替代了DialogFragment中的handler](https://www.jianshu.com/p/742279658ee0)
@@ -66,6 +67,7 @@
             
 3. Handler leak
     静态内部类  + 软引用存储上下文
+    
 4. Thread + RunOnUiThread 泄漏
     在onDestory中调用ExecutorService.shutDown()，或者Handler.removeCallback(runnable)
  

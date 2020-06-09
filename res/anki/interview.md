@@ -44,6 +44,7 @@ class ListNode<T>{
 	ListNode<T> next;
 }
 ```   
+
 3. 已知 sqrt (2)约等于 1.414，要求不用数学库，求 sqrt (2)精确到小数点后 10 位。
 ```java
 public class Sqrt2 {
