@@ -1,4 +1,4 @@
-​		开发flutter项目了，我是Android出身，开发时候，都是由Android和Java类比着去寻找flutter和Dart中对应的控件和语法。
+​		开发flutter项目了，开发时候，是由Android和Java类比着去寻找flutter和Dart中对应的控件和语法。
 
 ###  flutter中的mvp
 
@@ -54,22 +54,3 @@ client通过host可以做两件事情：
 - [flutter核心原理](https://book.flutterchina.club/chapter14/)
 - [Effective Dart](https://dart.dev/guides/language/effective-dart)
 
-
-
-shunyoushouka://splash
-
-
-
-double --> float
-
-byte
-
-short 
-
-int 
-
-long 
-
-boolean
-
-character
