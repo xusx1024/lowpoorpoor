@@ -17,7 +17,7 @@ class MinStack{
     Stack<Integer> stack;
     int min = Integer.MAX_VALUE;
     public MinStack(){
-        stack = new Stack<>():
+        stack = new Stack<>();
     }
     public void push(int x){
         if(x <= min){
